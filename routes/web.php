@@ -18,9 +18,9 @@ Route::get('/about', function () {
     // return 'Hello World';
 });
 
-Route::get('/blog', function () {
+Route::get('/posts', function () {
     // $judulblog = 'Blog Pribadi';
-    return view('blog', ['title' => 'Blog Page', 'posts' => [
+    return view('posts', ['title' => 'Blog Page', 'posts' => [
         [
             'title' => 'Judul Artikel 1',
             'author' => 'Muhamad Gunawan',
