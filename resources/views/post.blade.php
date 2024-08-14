@@ -5,8 +5,8 @@
     <article class="py-8 max-w-screen-md">
         <h2 class="text-3xl mb-2 font-semibold tracking-tight text-slate-800">{{ $post ['title'] }}</h2>
         <div class="text-slate-500 text-base mb-2">
-            <a href="#">
-                {{ $post ['author'] }}
+            <a href="/authors/{{ $post->author->username }}">
+                {{ $post->author->name }}
             </a> | {{ $post->created_at->diffForHumans() }}
         </div>
         <p class="my-4 font-light">{{ $post ['body'] }}</p>

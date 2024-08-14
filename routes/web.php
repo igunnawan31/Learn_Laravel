@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,18 @@ Route::get('/posts', function () {
 Route::get('/posts/{post:slug}', function(Post $post){
     // $post = Post::find($id);
     return view('post', ['title' => 'Single Post', 'post' => $post]);
+    // dd($post);
+});
+
+Route::get('/authors/{user:username}', function(User $user){
+    // $post = Post::find($id);
+    return view('posts', ['title' => count($user->release) . ' Articles by ' . $user->name, 'posts' => $user->release]);
+    // dd($post);
+});
+
+Route::get('/categories/{category:name}', function(Category $category){
+    // $post = Post::find($id);
+    return view('posts', ['title' => count($category->posts) . ' Categories for ' . $category->name, 'posts' => $category->posts]);
     // dd($post);
 });
 
