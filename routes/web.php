@@ -26,7 +26,18 @@ Route::get('/about', function () {
 
 Route::get('/posts', function () {
     // $judulblog = 'Blog Pribadi';
-    return view('posts', ['title' => 'Blog Page', 'posts' => Post::all()]);
+    // $posts = Post::all();
+    // dump(request('search'));
+
+    // $posts = Post::latest();
+
+    // if(request('search')) {
+    //     $posts->where('title', 'like', '%' . request('search') . '%');
+    // }
+
+    // $posts = Post::with(['author', 'category'])->latest()->get(); 
+    return view('posts', ['title' => 'Blog Page', 'posts' => Post::filter(request(['search'
+    ,'category', 'author']))->latest()->get()]);
     // return 'Hello World';
 });
 
@@ -40,12 +51,14 @@ Route::get('/posts/{post:slug}', function(Post $post){
 
 Route::get('/authors/{user:username}', function(User $user){
     // $post = Post::find($id);
+    // $posts = $user->release->load('category', 'author');
     return view('posts', ['title' => count($user->release) . ' Articles by ' . $user->name, 'posts' => $user->release]);
     // dd($post);
 });
 
 Route::get('/categories/{category:name}', function(Category $category){
     // $post = Post::find($id);
+    // $posts = $category->posts->load('category', 'author');
     return view('posts', ['title' => count($category->posts) . ' Categories for ' . $category->name, 'posts' => $category->posts]);
     // dd($post);
 });
